@@ -24,23 +24,14 @@ Fraction input_fraction()
 
 int find_gcd(int a, int b)
 {
-  int large = a > b ? a : b;
-    int small = a < b ? a : b;
-    int i = 1;
-    int rem = 1;
-
-    while (rem)
+  int t;
+  while (b != 0)
     {
-        rem = large - i * small;
-        if (rem < small)
-        {
-            large = small;
-            small = rem;
-            i = 0;
-        }
-        i++;
+      t = b;
+      b = a%b;
+      a = t;
     }
-    return large;
+  return a;
 }
 
 void input_in_fractions(int n, Fraction f[n])
