@@ -17,8 +17,8 @@ int input_n()
 Fraction input_fraction()
 {
   Fraction x;
-  scanf("%d", x.num);
-  scanf("%d", x.den);
+  scanf("%d", &x.num);
+  scanf("%d", &x.den);
   return x;
 }
 
@@ -34,12 +34,12 @@ int find_gcd(int a, int b)
   return a;
 }
 
-void input_in_fractions(int n, Fraction f[n])
+void input_n_fractions(int n, Fraction f[n])
 {
   printf("Enter the numerator and denominator of %d fraction:\n", n);
   for(int i=0; i<n; i++)
     {
-      scanf("%d\n%d", f[i].num, f[i].den);
+      scanf("%d\n%d", &f[i].num, &f[i].den);
       printf("Next fraction;\n");
     }
 }
@@ -60,10 +60,7 @@ Fraction add_n_fractions(int n, Fraction f[n])
   Fraction x;
   for(int i=0; i<n; i++)
     {
-      int n1, n2;
-      n1 = f[i];
-      n2 = f[i+1];
-      x = add_n_fractions(n1, n2);
+      x = add_fractions(x, f[i]);
     }
   return x;
 }
@@ -71,20 +68,20 @@ Fraction add_n_fractions(int n, Fraction f[n])
 void output(int n, Fraction f[n], Fraction sum)
 {
   printf("The sum of %d fractions:\n", n);
-  for(int i=0; i<n-1; i++);
+  for(int i=0; i<n-1; i++)
   {
     printf("%d/%d + ", f[i].num, f[i].den);
   }
-  printf("%d/%d = %d/%d", f[n].num, f[n].den, sum.num, sum.den);
+  printf("%d/%d = %d/%d\n", f[n-1].num, f[n-1].den, sum.num, sum.den);
 }
 
 int main()
 {
-  int n;
+  int n = 0;
   n = input_n();
   Fraction f[n], sum;
-  input_in_fractions(n, f[n]);
-  sum = add_n_fractions(n, f[n]);
-  output(n, f[n], sum);
+  input_n_fractions(n, f);
+  sum = add_n_fractions(n, f);
+  output(n, f, sum);
   return 0;
 }

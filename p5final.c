@@ -1,4 +1,5 @@
 #include <stdio.h>
+
 int input()
 {
   int n;
@@ -7,41 +8,38 @@ int input()
   return n;
 }
 
-void init_array(int n, int a[n])
+void input_array(int n, int a[n])
 {
-  for(int i=0;i<n;i++)
-    a[i] = i;
-  a[1]=0;
+  for(int i=0; i<n; i++)
+    {
+      printf("Enter value %d:\n", i+1);
+      scanf("%d", &a[i]);
+    }
 }
 
-void ets(int n, int a[n])
+int find_largest(int n, int a[n])
 {
-  int i=0;
-   /* Find next non-zero number */
-  while(i<sqrt(n)){
-   for(;a[i]==0 ;i++);
-   for(int k=i+i;k<n;k += i)
-     a[i] = 0;
-   i++;
-  }
+  int t = 0, t1 = 0;
+  for(int i = 0; i<n; i++)
+    {
+      if(a[i]>t)
+      {t = a[i];}
+      t1 = i;
+    }
+  return t1;
 }
 
-
-void display(int n, int a[n])
+void out_put(int n, int a[n], int largest)//EDIT THIS SHITT
 {
-  for(int i=0;i<n;i++)
-    if(a[i]!=0)
-      printf("%d ",a[i]);
-  printf("\n");
+  printf("The greatest value in the array is %d", largest);
 }
 
 int main()
 {
-  int n;
-  n=input();
+  int n = input();
   int a[n];
-  init_array(n,a);
-  ets(n,a);
-  display(n,a);
+  input_array(n, a);
+  int largest = find_largest(n, a);
+  out_put(n, a, largest);
   return 0;
 }

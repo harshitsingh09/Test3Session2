@@ -1,2 +1,2 @@
 language = "bash"
-run = "gcc -g p1final.c"
+run = "gcc -g p5final.c -lm"
